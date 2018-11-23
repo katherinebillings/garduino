@@ -37,7 +37,8 @@
     
     var temperature = new five.Thermometer({
       controller: "LM35",
-      pin: "A1"
+      pin: "A0",
+      freq: 500
     });
   
     temperature.on("change", function() {
@@ -45,22 +46,23 @@
     });
   
     var humid = new five.Sensor({
-      pin: "A0",
-      freq: 100,
-      threshold: 2
+      pin: "A1",
+      freq: 500
     });
   
-    humid.on("data", function() {
+    humid.on("change", function() {
           var sensorInfo = this.value;
           var remap = createRemap(200, 1023, 100, 0);
           humidityDiv.innerHTML = remap(sensorInfo);
     });
   
     // Create a new `photoresistor` hardware instance.
-    photoresistor = new five.Sensor({
+    var photoresistor = new five.Sensor({
       pin: "A2",
-      freq: 250
+      freq: 500
     });
+
+    
   
     // Inject the `sensor` hardware into
     // the Repl instance's context;
@@ -70,7 +72,9 @@
     });
     
     photoresistor.on("change", function() {
-      lightDiv.innerHTML = this.value;
+          var sensorInfo = this.value;
+          var remap = createRemap(0, 1023, 100000, 0);
+          lightDiv.innerHTML = remap(sensorInfo);
     });
   });
   
