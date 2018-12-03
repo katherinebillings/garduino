@@ -1,2 +1,22 @@
 @charset "UTF-8";
 /* CSS Document */
+
+body {
+	background-image: url('../images/bg.jpg');
+}
+
+#tempCircle {
+	border:  15px solid;
+	border-color: #BFDA71;
+	border-radius: 50%;
+	width:  100px;
+	height:  100px;
+}
+
+.tempCircleCool {
+	border-color: #01DAF3;
+}
+
+.tempCircleHot {
+	border-color: #B21C05;
+}

@@ -2,7 +2,9 @@
 var Readable = require('stream').Readable;
 var util = require('util');
 var five = require('johnny-five');
-  
+
+
+
 util.inherits(MyStream, Readable);
   
 function MyStream(opt) {  
@@ -17,11 +19,18 @@ process.__defineGetter__('stdin', function() {
     process.__stdin = new MyStream();
     return process.__stdin;
 })
-  
+
+//ARDUINO VARAIBLES----------------
 var board = new five.Board();
 var humidityDiv = document.querySelector("#humidValue");
 var lightDiv = document.querySelector("#lightValue");
 var tempDiv = document.querySelector("#tempValue");
+//---------------------------------
+
+//STYLE VARIABLES-----------------
+var tempCircle = document.querySelector("#tempCircle");
+//--------------------------------
+
   
 function createRemap(inMin, inMax, outMin, outMax) { 
   return function remaper(x) { 
@@ -31,7 +40,6 @@ function createRemap(inMin, inMax, outMin, outMax) {
 
 //CHARTS JS GLOBAL VARIABLES-------------------
 var myHumidityChart = document.getElementById('myHumidityChart').getContext('2d');
-var myTempChart = document.getElementById('myTempChart').getContext('2d');
 // Global options
 Chart.defaults.global.defaultFontFamily = 'Lato';
 Chart.defaults.global.defaultFontSize = 20;
@@ -52,89 +60,14 @@ board.on("ready", function() {
   
   temperature.on("change", function() {
     tempDiv.innerHTML = this.celsius; //Testing purposes
-    var value = 32; //Testing purposes
-    if (value >= 32) { //Too hot------------------------------
-      var massPopChart = new Chart(myTempChart, {
-      type:'doughnut',
-        data:{
-          datasets:[{
-            data: [100,100- 100],
-            backgroundColor:['#B21C05','#fff'],
-            hoverBorderWidth:3,
-            hoverBorderColor: '#000',
-            borderWidth:[1,0]
-          }]
-          },
-          options:{
-            layout:{
-              padding:{
-                left:0,
-                right:0,
-                bottom:0,
-                top:50
-              }
-            },
-            animation:{
-              duration: 0
-            },
-            cutoutPercentage:80
-          }
-      });
-    } else if( value >= 15) { //Perfect Temp-------------
-      var massPopChart = new Chart(myTempChart, {
-      type:'doughnut',
-        data:{
-          datasets:[{
-            data: [100,100- 100],
-            backgroundColor:['#BFDA71','#fff'],
-            hoverBorderWidth:3,
-            hoverBorderColor: '#000',
-            borderWidth:[1,0]
-          }]
-          },
-          options:{
-            layout:{
-              padding:{
-                left:0,
-                right:0,
-                bottom:0,
-                top:50
-              }
-            },
-            animation:{
-              duration: 0
-            },
-            cutoutPercentage:80
-          }
-      });
-    } else { //Too cold------------------------------
-      var massPopChart = new Chart(myTempChart, {
-      type:'doughnut',
-        data:{
-          datasets:[{
-            data: [100,100- 100],
-            backgroundColor:['#01DAF3','#fff'],
-            hoverBorderWidth:3,
-            hoverBorderColor: '#000',
-            borderWidth:[1,0]
-          }]
-          },
-          options:{
-            layout:{
-              padding:{
-                left:0,
-                right:0,
-                bottom:0,
-                top:50
-              }
-            },
-            animation:{
-              duration: 0
-            },
-            cutoutPercentage:80
-          }
-      });
-    }
+    var value = 15; //0sting purposes
+    console.log("WORKS");
+    console.log(tempCircle);
+    if (value >= 30) {
+      tempCircle.style.borderColor = "#B21C05";
+    } else if(value <= 5) {
+      tempCircle.style.borderColor = "#01DAF3";
+    } 
   });
   
   var humid = new five.Sensor({
@@ -154,7 +87,7 @@ board.on("ready", function() {
           datasets:[{
             label: 'Humidity',
             data: [value,100- value],
-            backgroundColor:['#00e6ff','#fff'],
+            backgroundColor:['#00e6ff'],
             hoverBorderWidth:3,
             hoverBorderColor: '#000',
             borderWidth:[1,0]
