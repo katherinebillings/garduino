@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Template</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+<link href="css/main.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<h1>BUDY with Charts</h1>
+	<div class="containerHumidity" style="position: relative; height:40vh; width:80vw">
+		<h2 id="humidValue">Humidity</h2>
+		<canvas id="myHumidityChart"></canvas>
+	</div>
+
+	<div class="containerTemp">
+		<h2 id="tempValue">Temp</h2>
+		<div id="tempCircle"></div>
+	</div>
+
+	<div class="containerLight">
+		<h2 id="lightValue">light</h2>
+		<canvas id="myLightChart"></canvas>
+	</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
+

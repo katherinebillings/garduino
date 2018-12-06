@@ -1,0 +1,558 @@
+@charset "UTF-8";
+/* CSS Document */
+img,embed,object,video{
+
+  max-width:100%;
+}
+
+html{
+  box-sizing:border-box;
+}
+
+*,
+*::before,
+*::after{
+  box-sizing: inherit;
+}
+img{
+  -ms-interpolation-mode:bicubic;
+}
+body
+{
+	font-family: 'Roboto', sans-serif;
+  font-color: #f5f5f5;
+  margin: 0 auto;
+}
+
+#nav {
+	background-color: #BEDA71
+	/*font-size: 5px;
+	text-align: center;
+	letter-spacing: 2px;
+  height: 20px;*/
+
+
+}
+
+.hidden {
+  display: none; 
+}
+
+a {
+  color: #3E3E59;
+  text-decoration: none;
+  outline: 0;
+  transition: all .1s linear 0s; }
+
+
+  h1 {
+  
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.1em;
+  letter-spacing: -1px;
+  line-height: 30px;
+  color: #f5f5f5;
+   
+ }
+
+
+
+
+
+/* .HomeSunText{
+  display: inline-block;
+  margin-bottom: 0;*/
+  
+
+ 
+
+  /*.homeHumidityText{
+  display: inline-block;
+  margin-bottom: 0;*/
+  
+
+
+ 
+
+h2 {
+  
+  font-family: 'Roboto', sans-serif;
+  font-size: 2.1625em;
+  letter-spacing: -1px;
+  line-height: 30px;
+  color: #f5f5f5; 
+  text-align: center;
+}
+
+h3 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9em;
+  color: #f5f5f5;
+ /* font-weight: bold;*/
+  justify-content;
+  text-align: center;  }
+
+
+  header{
+    background-color: #BEDA71
+
+
+
+  }
+
+  #mainNav ul {
+  display: none;
+  background-color: #BEDA71
+  margin-top: 50px;
+  }
+
+
+#mainNav ul.slideToggle {
+  display: block; }
+
+#mainNav button {
+  position: absolute;
+  top: 4px;
+  right: 15px;
+  background: url(../assets/burger1.svg) center no-repeat;
+  background-color:#BEDA71;
+  border: 1px;
+  width: 30px;
+  height: 30px;
+  transition: all 400ms ease; }
+
+#mainNav button.expanded {
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg); }
+
+#mainNav a {
+  background-color: #BEDA71;
+  display: block;
+  color: #2d2d2d;
+  padding: 10px 0 10px 0;
+  text-align: center; }
+
+#mainNav li {
+  border-bottom: 0px solid #3e3e59; }
+
+#mainNav li:first-child {
+  border-top: 0px solid #3e3e59; }
+
+#mainNav li:last-child {
+  margin-bottom: 10px; }
+
+#mainNav li a:hover {
+  background-color: #f5f5f5; }
+
+  #logo {
+ 
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 80px;
+  text-align: center;
+   }
+
+  .container {
+  margin: 0 auto;
+
+  padding: 10px 15px 0 15px ;
+  position: relative;
+  max-width: 1200px; 
+  background-image: url(../assets/background.png);
+  background-size: cover;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-column-gap: 20px; }
+
+  #container {
+
+  margin: 0 auto;
+  padding: 10px 15px 0 15px ;
+  position: relative;
+  max-width: 1200px; 
+  
+  
+}
+
+
+.containerOne {
+  margin: 0 auto;
+  padding: 10px 15px 0 15px ;
+  position: relative;
+  max-width: 1200px; 
+  background-image: url(../assets/background.png);
+  background-size: cover;
+}
+
+
+.containerTwo {
+  margin: 0 auto;
+
+  padding: 10px 15px 0 15px ;
+  position: relative;
+  max-width: 1200px; 
+  background-image: url(../assets/background.png);
+  background-size: cover;
+}
+
+.containerThree {
+  margin: 0 auto;
+
+  padding: 10px 15px 0 15px ;
+  position: relative;
+  max-width: 1200px; 
+  background-image: url(../assets/background.png);
+  background-size: cover;
+}
+
+
+
+ .sunText{
+  display: inline-block;
+  margin-bottom: 0;
+  
+
+ }
+
+  .humidityText{
+  display: inline-block;
+  margin-bottom: 0;
+  
+
+
+ }
+
+ .tempText{
+
+
+  display: inline-block;
+  margin-bottom: 0;
+  text-align: center;
+
+ }
+
+#templogo{
+  width:35px;
+  margin-left: 62px;
+  display: inline;
+
+}
+
+#sunlogo{
+  width:35px;
+  margin-left: 96px;
+  display:inline;
+ }
+
+
+#humiditylogo{
+  width:35px;
+  margin-left: 96px;
+  display: inline;
+  
+}
+
+.sensorData {
+  height: 100px;
+  padding-top:30px;
+  font-size: 2em;
+  margin-top: 0;
+  
+
+}
+
+
+
+#tempSensorData {
+  background: url(../assets/temperatureData.png) center center no-repeat;
+  background-size: contain;
+
+}
+
+#sunSensorData {
+  background: url(../assets/lightData.png) center center no-repeat;
+  background-size: contain;
+}
+
+#humiditySensorData {
+  background: url(../assets/humidityData.png) center center no-repeat;
+  background-size: contain;
+  }
+
+.sensorLabel {
+  font-size: 1.4em;
+  margin-top:15px;
+  grid-column: 2/11;
+}
+
+/*
+#temperatureData{
+  width:150px;
+  height:150px;
+ /* margin-left:100px; 
+ order:3;
+}
+*/
+.plus{
+
+  /*margin-top: 10px;*/
+  width:20px;
+  height:20px;
+  margin-left:180px;
+  
+}
+
+#homePlus{
+  margin-left:190px;
+  margin-top: -10px;
+  margin-top: 40px;
+
+  width:20px;
+  height:20px;
+  grid-column: 1/4;
+  order:5; 
+
+}
+
+.addPlantButton {
+
+  margin-top: 10px;
+  margin-bottom: 0;
+ 
+}
+
+.addHomePlantButton{
+  margin-top: 70px;
+   margin-bottom: 0;
+  grid-column: 5/9;
+  order:7;
+
+}
+
+#favourite{
+  width:30px;
+  height:30px;
+  margin-left:10px; 
+}
+
+#weather{
+  width:30px;
+  height:30px;
+  margin-left:-5px;
+  grid-column: 1 / 3;
+ 
+  }
+
+#weatherTxt{
+  display:inline;
+  margin-left:-100px;
+  grid-column: 3 / 6;
+  margin-bottom: 100px;
+ 
+}
+
+#favourite{
+  margin-left:55px;
+
+
+  display:inline;
+  grid-column: 8/ 10;
+
+}
+
+
+#favouriteTxt{
+  margin-left:-5px;
+  grid-column: 11/ -1;
+
+}
+
+
+#homeRefresh{
+
+   grid-column: 1 / 2;
+    order: -1;
+}
+
+#homePersonalise{
+  grid-column: 4 / 10;
+  order: 0;
+}
+
+#homeMsg{
+
+grid-column: 1 / -1;
+order: 0;
+}
+
+#plant{
+grid-column: 4 / 10;
+order: 0;
+font-size:1.8em;;
+
+}
+
+#humidityContainer{
+  grid-column: 1 / 5;
+  margin-left: 20px;
+
+}
+
+#tempContainer{
+  grid-column:  5/ 9;
+    margin-left: 20px;
+
+}
+
+#sunContainer{
+  grid-column: 9/ -1; 
+    margin-left: 20px; 
+
+}
+
+#homeTempLogo{
+  width:100px;
+
+}
+
+#homeSunLogo{
+  width:100px;
+
+}
+
+#homeHumidityLogo{
+  width:100px;
+}
+
+.homeSensorData{
+  margin-left: 5px;
+  margin-top: 5px;
+  height: 100px;
+  font-size: 1em;
+  
+}
+
+.homeSensorLabel{
+  margin-top: -85px;
+  margin-right: 8px;
+  font-size: 0.7em;
+}
+
+.desktopView{
+  display: none;
+}
+
+
+@media screen and (min-width: 600px) {
+  header{
+    grid-column: 1/-1;
+    height: 50px;
+  }
+
+
+  #mainNav {
+    margin-bottom: 0;
+    grid-column: 4 / -1;
+    margin-top: -30px; }
+
+  #mainNav ul {
+    display: block;
+    text-align: right; }
+
+  #mainNav ul li {
+    display: inline;
+    margin-right: 20px; }
+
+  #mainNav ul li:last-child {
+    margin-right: 0; }
+
+  #mainNav button {
+    display: none; }
+
+  #mainNav a {
+    
+    display: inline;
+    color: #3e3e59;
+    padding: 10px 10px 10px 10px;
+    text-align: auto; }
+
+  #mainNav li {
+    border-bottom: none; }
+
+  #mainNav li:first-child {
+    border-top: none; }
+
+  #mainNav li:last-child {
+    margin-bottom: 0px; }
+  #container {
+    background-image: url(../assets/background.png);
+  background-size: cover;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-column-gap: 20px;
+  }
+
+
+ /*  #logo {
+    grid-column: 5 / 9;
+    order: -1;
+  margin-bottom: 10px;
+    margin-top: 0;
+  
+  margin-left: auto;
+  margin-right: auto;
+  display: inline-block;
+  width: 80px;
+  text-align: center;
+   }
+*/
+
+.containerOne {
+
+  max-width: 1800px; 
+ background-image: none;
+ grid-column: 1/5;
+}
+
+
+.containerTwo {
+  max-width: 1800px; 
+  background-image: none;
+ grid-column: 5/9;}
+
+.containerThree {
+ 
+   grid-column: 9/-1;
+  position: relative;
+  max-width: 1800px; 
+  background-image: none;
+  
+}
+
+.msg,  .addPlantButton , .plus, .Racheal, .REFRESH{
+  display: none;
+}
+
+.desktopView{
+  display:all;
+}
+
+
+.desktopREFRESH{
+
+  grid-column: 1/3;
+}
+  
+.desktopmsg{
+  grid-column: 1/9;
+
+}
+
+}
+
+
+
+
+

@@ -1,82 +1,144 @@
-(function() {
-  "use strict";
-var Readable = require('stream').Readable;
-var util = require('util');
-var five = require('johnny-five');
+// JavaScript Document
+(function(){
+	"use strict";
+	
+	//loading screen
+	var loadingAnimation = document.querySelector('#overlay');
 
-util.inherits(MyStream, Readable);
+	setTimeout(function() {
+		// console.log('timeout loaded');
+		loadingAnimation.classList.toggle('fade');
+	}, 100);
+	//1700
+	
+	if(navigator.userAgent.indexOf("Firefox") != -1 ) {
+		var params = {
+			container: document.querySelector('#loadingScreen'),
+			renderer: 'svg',
+			loop: false,
+			autoplay: true,
+			path: "data.json"
+		};
+			
+		var anim;
+		//Load Animation
+		anim = lottie.loadAnimation(params);
+		//Animation Speed
+		anim.setSpeed(2.5);	
+	} else {
+		var load = document.querySelector("#loader");
+		load.style.display = "block";
+	}
+	//JSON Data
+	
+	//main navigation
+	var button = document.querySelector("#button");
+	var nav = document.querySelector("#mainNav");
+	var burgerMenu = document.querySelector("#burgerMenu");
+    var links = document.querySelectorAll(".circle a");
 
-function MyStream(opt) {  
-  Readable.call(this, opt);
-}
+    function navToggle() {
+		nav.classList.toggle("closed");
+        button.classList.toggle("closeToggle");
+	}
+	
+	button.addEventListener("click", navToggle, false);
 
-MyStream.prototype._read = function() {};  
+	//resize nav
+	function navDesk() {
+		if(window.innerWidth > 600) {
+			if(nav.classList.contains("closed")) {
+				nav.classList.remove("closed");
+				button.classList.remove("closeToggle");
+			}
+		}
+	};
 
-// hook in our stream
-process.__defineGetter__('stdin', function() {  
-  if (process.__stdin) return process.__stdin
-  process.__stdin = new MyStream();
-  return process.__stdin;
-})
+	window.addEventListener("resize", navDesk, false);
 
-var board = new five.Board();
-var humidityDiv = document.querySelector("#humidValue");
-var lightDiv = document.querySelector("#lightValue");
-var tempDiv = document.querySelector("#tempValue");
+	navDesk();
 
-tempDiv.innerHTML = "numbers";
-lightDiv.innerHTML = "numbers";
-humidityDiv.innerHTML = "numbers";
+	//details nav
+	if(window.innerWidth <= 600) {
+		var dNav = document.querySelector("#detailsNav");
+		var circles = dNav.querySelectorAll("span");
+		var humidDetails = document.querySelector("#humid");
+		var sunDetails = document.querySelector("#sun");
+		var tempDetails = document.querySelector("#temp");
+		var current;
 
-function createRemap(inMin, inMax, outMin, outMax) { 
-	return function remaper(x) { 
-		return Math.round((x - inMin) * (outMax - outMin) / (inMax - inMin) + outMin); 
-	}; 
-}
+		if(window.location.href.indexOf("temp") > -1) {
+			tempDetails.classList.remove("hideDetailsRight");
+			tempDetails.classList.remove("hideDetailsLeft");
+			humidDetails.classList.add("hideDetailsLeft");
+			circles[1].classList.add("active");
+			circles[0].classList.remove("active");
+			current = circles[1];
+		} else if(window.location.href.indexOf("sun") > -1) {
+			humidDetails.classList.add("hideDetailsLeft");
+			sunDetails.classList.remove("hideDetailsRight");
+			sunDetails.classList.remove("hideDetailsLeft");
+			circles[2].classList.add("active");
+			circles[0].classList.remove("active");
+			current = circles[2];
+		} else {
+			current = circles[0];
+		}
 
-board.on("ready", function() {
+		for (var h = 0; h < circles.length; h++) {
+			circles[h].addEventListener("click", swipeNav, false);
+		};
+	}
+	
 
-  tempDiv.innerHTML = "numbers";
-  lightDiv.innerHTML = "numbers";
-  humidityDiv.innerHTML = "numbers";
-  
-  var temperature = new five.Thermometer({
-    controller: "LM35",
-    pin: "A0"
-  });
+	function swipeNav(e) {
+		e.currentTarget.classList.add("active");
+		current.classList.remove("active");
+		for (var i = 0; i < circles.length; i++) {
+			var currentNum;
+			if(current === circles[i]) {
+				if(currentNum < i) {
+					if(i === 1) {
+						tempDetails.classList.add("hideDetailsRight");
+					} else if(i === 2) {
+						sunDetails.classList.add("hideDetailsRight");
+					} else {
+						humidDetails.classList.add("hideDetailsRight");
+					} 
+				} else {
+					if(i === 1) {
+						tempDetails.classList.add("hideDetailsLeft");
+					} else if(i === 2) {
+						sunDetails.classList.add("hideDetailsLeft");
+					} else {
+						humidDetails.classList.add("hideDetailsLeft");
+					} 
+				}
+			} else if(e.currentTarget === circles[i]) {
+				if(i === 1) {
+					tempDetails.classList.remove("hideDetailsRight");
+					tempDetails.classList.remove("hideDetailsLeft");
+				} else if(i === 2) {
+					sunDetails.classList.remove("hideDetailsRight");
+					sunDetails.classList.remove("hideDetailsLeft");
+				} else {
+					humidDetails.classList.remove("hideDetailsRight");
+					humidDetails.classList.remove("hideDetailsLeft");
+				}
+				currentNum = i;
+			}
+		}
+		current = e.currentTarget;
+	}
 
-  temperature.on("change", function() {
-    tempDiv.innerHTML = this.celsius);
-  });
 
-	var humid = new five.Sensor({
-		pin: "A4",
-		freq: 250,
-		threshold: 2
-	});
+		
+	//refresh
+	var refresh = document.querySelector(".refresh");
 
-	humid.on("change", function() {
-        var sensorTest = createRemap(200, 1023, 100, 0);
-        humidityDiv.innerHTML = this.value;
-  });
+	function reloadPage() {
+		
+	}
 
-  // Create a new `photoresistor` hardware instance.
-  photoresistor = new five.Sensor({
-    pin: "A2",
-    freq: 250
-  });
-
-  // Inject the `sensor` hardware into
-  // the Repl instance's context;
-  // allows direct command line access
-  board.repl.inject({
-    pot: photoresistor
-  });
-  
-  photoresistor.on("change", function() {
-    lightDiv.innerHTML = this.value;
-  });
-});
-
-//0 - 1023
+	refresh.addEventListener("click", reloadPage, false);
 })();

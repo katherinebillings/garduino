@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="initial-scale=1.0, width=device-width">
+<title>BUDY APP</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.4.2/lottie.js" type="text/javascript"></script>
+<link href="css/main.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+</head>
+
+<body>
+    <div id="overlay" class="animTransition">
+        <div id="loadingScreen"></div>
+        <div id="loader"></div>
+	</div>
+	<div id="container">
+	<header>
+        <img id="logo" src="images/logo_white.svg" alt=logo>
+	    <nav id="mainNav">
+            <h2 class="hidden">Main Navigation</h2>
+            
+            <a role="button" id="button">
+                <span class="bar1"></span>
+                <span class="bar2"></span>
+                <span class="bar3"></span>
+            </a>
+            <ul id="burgerMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About BUDY</a></li>
+                <li><a href="#">Settings</a></li>
+                <li><a href="#">Logout</a></li>
+                </ul>
+        </nav>
+    </header>
+    <div class="content">
+        <a class="refresh" href="#">Refresh</a>
+        <h2 class="name"> Hi Racheal</h2>
+        <h3 class="msg"> This is your personal account to view all information to make BUDY healthy</h3>
+        <div class="details" id="humid"> 
+            <h2><img class="icon" src="images/humiditylogo.svg" alt="Humidity Icon">Humidity</h2>
+            <h3 class="sensorLabel">Good</h3>
+            <h3 class="sensorData">75%</h3>
+            <!--<div class="containerHumidity" style="position: relative; height:40vh; width:80vw">
+                <h2 id="humidValue">Humidity</h2>
+                <canvas id="myHumidityChart"></canvas>
+            </div>-->
+            <h3>Just the right amount of water</h3>
+            <img class="history" src="assets/history.png" alt="History">
+        </div>
+        <div class="details hideDetailsRight" id="temp"> 
+            <h2><img class="icon" src="images/templogo.svg" alt="Temperature Icon">Temperature</h2>
+            <h3 class="sensorLabel">High</h3>
+            <h3 class="sensorData">20°</h3>
+            <h3>Reduce temperature quickly</h3>
+            <img class="history" src="assets/history.png" alt="History">
+        </div>
+        <div class="details hideDetailsRight" id="sun"> 
+            <h2><img class="icon" src="images/sunlogo.svg" alt="Sunlight Icon">Sunlight</h2>
+            <h3 class="sensorLabel">Low</h3>
+            <h3 class="sensorData">2.0<span>lm</span></h3>
+            <h3>Move plant closer to sunlight</h3>
+            <img class="history" src="assets/history.png" alt="History">
+        </div>
+        <div class="bottom">
+            <img class="plus" src="images/plus.svg" alt="Add Plant">
+            <h3 class="addPlantButton"> Add Plant</h3>
+            <div id="detailsNav">
+                <a><span class="active"></span></a>
+                <a><span></span></a>
+                <a><span></span></a>
+            </div>
+        </div>
+    </div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
