@@ -734,14 +734,15 @@ header{
     }
 
     .containerHumidity {
-      width: 100%;
-      position: initial;
-      margin-top: -75px;
-      margin-left: -65px;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
      }
     
     #myHumidityChart {
-      margin-top: 0;
+        margin-top: 295px;
+        margin-left: 5%;
     }
 
     #humid .sensorData h3 {
@@ -877,4 +878,30 @@ header{
     }
 
 
+}
+
+@media screen and (min-width: 800px) {
+  #basicdesktop #myHumidityChart {
+    
+      margin-left: 6%;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  #basicdesktop #myHumidityChart {
+      margin-top: 275px;
+      margin-left: 8%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  #basicdesktop #myHumidityChart {
+      margin-left: 10%;
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  #basicdesktop #myHumidityChart {
+      margin-top: 300px;
+  }
 }

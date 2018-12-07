@@ -128,6 +128,8 @@ board.on("ready", function() {
     var massPopChart = new Chart(myHumidityChart, {
       type:'doughnut',
         data:{
+          responsive:true,
+          maintainAspectRatio: false,
           labels:['Humidity'],
           datasets:[{
             
