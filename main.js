@@ -5,11 +5,11 @@ var mainWindow = null;
 
 app.on('ready', function () {
   mainWindow = new BrowserWindow({
-    height: 900,
-    resizable: true,
+    height: 505,
+    resizable: false,
     title: 'j5/electron template',
-    width: 1200,
-	frame: false
+    width: 595,
+  frame: false
   });
 
   mainWindow.loadURL('file://' + __dirname + '/app/index.html');
@@ -18,5 +18,3 @@ app.on('ready', function () {
     mainWindow = null;
   });
 });
-
-//400 - 1023
