@@ -1,0 +1,910 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'corbertregular';
+    src: url('../fonts/corbert-regular-webfont.woff2') format('woff2'),
+         url('../fonts/corbert-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'rubikregular';
+    src: url('../fonts/rubik-regular-webfont.woff2') format('woff2'),
+         url('../fonts/rubik-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+$white: #f5f5f5;
+$green: #BEDA71;
+$grey: #3E3E59;
+$red: #B21C05;
+$yellow: #FFF600;
+$blue: #00E6FF;
+$headerFont: 'rubikregular', Arial, Helvetica, sans-serif;
+$textFont: 'corbertregular', Arial, Helvetica, sans-serif;
+
+.hidden {
+  display: none; 
+}
+
+html{
+  box-sizing:border-box;
+}
+
+body
+{
+  font-family: $textFont;
+  color: $white;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+*,
+*::before,
+*::after{
+  box-sizing: inherit;
+}
+img{
+  -ms-interpolation-mode:bicubic;
+}
+
+img,embed,object,video{
+  max-width:100%;
+}
+
+/*Loading Screen*/
+.fade {
+	opacity:  0;
+	visibility: hidden;
+}
+
+#overlay {
+	  position: fixed; 
+    width: 100%; 
+    height: 100vh; 
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(191,218,113,1); 
+    z-index: 250;
+}
+
+#loadingScreen {
+	width: 150px;
+	height: 150px;
+	position:  fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 999;
+}
+
+.animTransition {
+	-moz-transition: all 0.5s ease-out;
+    -webkit-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out;
+}
+
+#loader {
+    display: none;
+    border: 16px solid $white; /* Light grey */
+    border-top: 16px solid $blue; /* Blue */
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    position:  fixed;
+    top: 35%;
+    left: 35%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/*Basic Rules*/
+#container {
+    margin: 0 auto;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+header{
+  background-color: $green;
+  padding: 10px 0;
+  height: 8vh;
+
+}
+
+#mainNav {
+  background-color: $green;
+}
+
+#mainNav a {
+  color: $grey;
+  font-family: $headerFont;
+  text-decoration: none;
+  outline: 0;
+  transition: all .1s linear;
+}
+
+#logo {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 80px;
+  text-align: center;
+}
+
+#button {
+  position: absolute;
+  top: 6px;
+  right: 15px;
+  border: 1px;
+  cursor: pointer;
+  transition: all 400ms ease;
+  z-index: 10;
+}
+
+.bar1, .bar2, .bar3 {
+    display: block;
+    width: 30px;
+    height: 6px;
+    background-color: $grey;
+    margin: 5px 0;
+    transition: 0.5s;
+    border-radius: 40%;
+}
+
+.closeToggle .bar1 {
+  -webkit-transform: rotate(-45deg) translateY(15px);
+  transform: rotate(-45deg) translateY(15px);
+}
+
+.closeToggle .bar2 {
+  opacity: 0;
+}
+
+.closeToggle .bar3 {
+  -webkit-transform: rotate(45deg) translateY(-15px);
+  transform: rotate(45deg) translateY(-15px);
+}
+
+#mainNav.closed::before {
+  width: 50%;
+  height: 100% !important ;
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-image: url("../images/background.png");
+  background-size: cover;
+  content: ' ';
+  -webkit-filter: blur(5px) opacity(80%);
+  filter: blur(5px) opacity(80%);
+  z-index: 4;
+}
+
+#burgerMenu {
+  position: absolute;
+  top: 0;
+  right: -50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  list-style: none;
+  width: 50%;
+  height: 100%;
+  z-index: 5;
+  padding: 0;
+  padding-top: 50px;
+  display: block;
+  margin: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+#burgerMenu a {
+  display: block;
+  font-family: $headerFont;
+  text-transform: uppercase;
+  color: $white;
+  padding: 10px 0 10px 0;
+  text-align: center;
+  transition: all 0.25s ease-in-out;
+  border-bottom: 1px solid #707070;
+}
+
+#burgerMenu .refresh {
+  display: none;
+}
+
+#burgerMenu a:hover {
+  background-color: $white;
+  color: #707070;
+}
+
+#mainNav.closed #burgerMenu {
+  right: 0;
+}
+
+/*Home Page*/
+
+.content {
+  margin: 0 auto;
+  padding: 10px 15px 80px 15px;
+  position: relative;
+  height: 92vh;
+  background: url(../images/background.png) no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.content h2 {
+  font-family: $textFont;
+  font-size: 2.1625em;
+  letter-spacing: -1px;
+  line-height: 30px;
+  color: $white; 
+  text-align: center;
+}
+
+.content h3 {
+  font-family: $textFont;
+  font-size: 0.9em;
+  color: $white;
+  text-align: center;
+}
+
+.refresh {
+  color: $white;
+  text-decoration: none;
+  transition: all 0.1s linear;
+  font-family: $headerFont;
+  text-transform: uppercase;
+}
+
+.name {
+  font-family: $headerFont;
+  text-transform: uppercase;
+}
+
+#basicmobile {
+    display: block;
+}
+
+.refresh:hover {
+  color: #707070;
+}
+
+.basicInfo {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.basicInfo > h2 {
+  flex-grow: 2;
+  width: 100%;
+  font-family: $headerFont;
+  text-transform: uppercase;
+}
+
+.basicInfo img {
+  width: 20%;
+  display: inline-block;
+}
+
+.basicInfo h3 {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+#weather, #fav {
+  width: 50%;
+  flex-grow: 1;
+  display: flex;
+  padding: 0 10px;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+#fav img {
+  margin-left: auto;
+}
+
+.infoBox {
+  margin-top: 30px;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.info {
+  padding: 0 0 10px 0;
+  position: relative;
+  text-decoration: none;
+}
+
+#humidBasic, #tempBasic, #sunBasic {
+  width: 33%;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.clip {
+  position: relative;
+  top: 0;
+  width: 100%;
+}
+
+#humidBasic .mask {
+  background: url("../images/humidlogo-color.svg") no-repeat;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center center;
+  background-attachment: local;
+}
+
+#tempBasic .mask {
+  background: url("../images/templogo-color.svg") no-repeat;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center center;
+  background-attachment: local;
+}
+
+#sunBasic .mask {
+  background: url("../images/sunlogo-color.svg") no-repeat;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center center;
+  background-attachment: local;
+};
+
+.info h3 {
+  font-size: 1.5em;
+  margin: 0;
+  margin-top: 10px;
+  font-family: $headerFont;
+  text-transform: uppercase;
+}
+
+.info h4 {
+  margin: 0;
+  font-size: 0.85em;
+  margin-top: 20px;
+  text-align: center;
+  color: $white;
+}
+
+#basicNav, #detailsNav {
+  justify-content: center;
+  margin: 0 auto;
+  display: flex;
+  flex-flow: row nowrap;
+  margin-bottom: 10px;
+}
+
+#basicNav a, #detailsNav a {
+  overflow: hidden;
+  margin: 1%;
+  cursor: pointer;
+}
+
+#basicNav span, #detailsNav span {
+  transition: all .3s linear 0s;
+  display: block;
+  border-radius: 50%;
+  border: 1px solid white;
+  width: 15px;
+  height: 15px; 
+}
+
+#basicNav span.active,#detailsNav span.active {
+  border: none;
+  background-color: #BFDA71;
+}
+
+/*Details*/
+
+.details {
+  display: block;
+  position: absolute;
+  transition: all 0.3s ease;
+  right: 0;
+  left: 0;
+}
+
+.details.hideDetailsRight {
+  right: -200%;
+  left: 0;
+}
+
+.details.hideDetailsLeft {
+  left: -200%;
+  right: 0;
+}
+
+.details h2 {
+  display: block;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.msg {
+  margin-bottom: 0;
+}
+
+.icon {
+  width:35px;
+  position: absolute;
+  left: 0;
+  margin-left: 62px;
+  right: 0;
+  opacity: 1;
+  visibility: initial;
+  transition: all .3s linear 0.2s;
+}
+
+.details.hideDetailsRight .icon {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.details.hideDetailsLeft .icon {
+  visibility: hidden;
+  opacity: 0;
+}
+
+
+
+.sensorLabel {
+  font-size: 1.4em;
+  margin-top: 15px;
+  font-family: $headerFont !important;
+  text-transform: uppercase;
+}
+
+.sensorData {
+  width:  125px;
+  height: 125px;
+  padding-top: 30px;
+  font-size: 2em !important;
+  margin: 0 auto;
+  font-family: $headerFont !important;
+  text-transform: uppercase;
+}
+
+#humid .sensorData h3 {
+  margin: 0 auto;
+  font-family: $headerFont !important;
+  margin-top: 20px;
+}
+
+.containerHumidity {
+  width: 100%;
+  height: 300px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+ }
+
+#myHumidityChart {
+  width: 250px !important;
+  height: 123px !important;
+  margin: 0 auto;
+  margin-top: 105px;
+}
+
+#temp .sensorData {
+    border:  15px solid;
+    border-color: $red;
+    border-radius: 50%;
+}
+
+#sun .sensorData {
+  border:  15px solid;
+  border-color: $yellow;
+  border-radius: 50%;
+}
+
+#sun .sensorData span {
+  font-size: 0.5em;
+  display: block;
+  text-transform: initial;
+}
+
+.containHistory {
+  width: 100%;
+  height: 300px;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.containHistory canvas {
+  width: 85% !important;
+  height: auto !important;
+  margin: 0 auto;
+  margin-top: 5% !important;
+}
+
+.details.hideDetailsRight .containHistory, .details.hideDetailsLeft .containHistory {
+  display: none;
+}
+
+.plus{
+  display: block;
+  width:20px;
+  height:20px;
+  margin: 0 auto;
+}
+
+.addPlantButton {
+  margin-top: 10px;
+  margin-bottom: 0;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+#detailsNav {
+  justify-content: center;
+  margin: 0 auto;
+  display: flex;
+  flex-flow: row nowrap;
+  margin-bottom: 10px;
+}
+
+#detailsNav a {
+  overflow: hidden;
+  margin: 1%;
+  cursor: pointer;
+}
+
+#detailsNav span {
+  transition: all .3s linear 0s;
+  display: block;
+  border-radius: 50%;
+  border: 1px solid white;
+  width: 15px;
+  height: 15px; 
+}
+
+#detailsNav span.active {
+  border: none;
+  background-color: #BFDA71;
+}
+
+.bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+#basicdesktop {
+    display: none;
+
+    #greeting {
+        display: inline-block;
+        width: 64%;
+        padding-left: 10px;
+        overflow: hidden;
+    }
+    
+    .name {
+        display: block;
+        text-align: left;
+        font-size: 3.5em;
+        margin: 30px 0 0 0;
+        font-weight: normal;
+    }
+
+    .msg {
+        display: block;
+        margin: 35px 0 0 0;
+        font-size: 1.2em;
+        font-weight: normal;
+        text-align: left;
+    }
+
+    .basicInfo {
+        display: inline-block;
+        width: 35%;
+        margin-left: auto;
+        vertical-align: top;
+        padding-top: 5px;
+        overflow: hidden;
+    }
+
+    .basicInfo h2 {
+        display: inline;
+        text-align: left;
+        font-size: 0.9em;
+        font-weight: normal;
+        letter-spacing: initial;
+        line-height: 1;
+        margin-top: 7.5px;
+    }
+
+    #top {
+        width: 90%;
+        margin: 0 auto;
+        margin-left: auto;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-content: center;
+        margin-bottom: 10px;
+    }
+
+    #bottom {
+        display: flex;
+    }
+
+    #add {
+      display: inline-block;
+        margin-left: 3%;
+    }
+
+    .plus {
+        width: 15px;
+        height: 15px;
+    }
+
+    #add h3 {
+        display: inline;
+        font-weight: normal;
+        margin: 0;
+        padding: 0;
+        font-size: 0.9em;
+        line-height: 30px;
+    }
+
+    #weather, #fav {
+        width: 50%;
+        padding: 0;
+        margin-right: 0;
+    }
+
+    #weather h3, #fav h3 {
+        font-size: 0.9em;
+        font-weight: normal;
+    }
+
+    #weather img, #fav img {
+        margin-left: 0;
+        width: 30%;
+    }
+
+    #fav img {
+        margin-left: auto;
+    }
+
+    #fav {
+        margin-right: 20px;
+    }
+
+    .infoBox {
+      justify-content: space-around;
+    }
+
+    .details {
+        position: initial;
+    }
+
+    .details header {
+        display: flex;
+        padding: 0 10px;
+        flex-flow: row nowrap;
+        background: none;
+        margin-bottom: 10px;
+        height: 40px;
+    }
+
+    .details h2 {
+        margin: 10px auto 0 8px;
+        font-size: 1em;
+        text-align: left;
+        letter-spacing: 0;
+        line-height: 1;
+    }
+
+    .sensorLabel {
+        font-size: 1.65em;
+        margin: 0;
+        margin-bottom: 30px;
+        width: 100%;
+    }
+
+    .icon {
+        position: initial;
+        margin-left: 0;
+        display: inline;
+        vertical-align: middle;
+    }
+
+    .containerHumidity {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+     }
+    
+    #myHumidityChart {
+        margin-top: 295px;
+        margin-left: 5%;
+    }
+
+    #humid .sensorData h3 {
+      margin: 0 auto;
+      font-family: $headerFont !important;
+      margin-top: 20px;
+    }
+
+    .containHistory {
+      width: 33%;
+      height: auto;
+      position: absolute;
+      left: 50%;
+      margin-left: -16.5%;
+      right: auto;
+      padding: 0 10px;
+    }
+
+    #temp .containHistory {
+      left: 50%;
+      
+    }
+
+    #humid .containHistory {
+      left: 0;
+      margin: 0;
+    }
+
+    #sun .containHistory {
+      right: 0;
+      left: auto;
+      margin: 0;
+    }
+    
+    .containHistory canvas {
+      width: 100% !important;
+      height: auto !important;
+      margin: 0 auto;
+      margin-top: 5% !important;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    body {
+        overflow: initial;
+    }
+
+    #loader {
+      top: 38%;
+      left: 43%;
+    }
+
+    .basic  {
+        .content {
+          height: 100%;
+            padding-bottom: 30px;
+        }
+
+        header {
+            height: 100px;
+            display: flex;
+            flex-flow: row nowrap;
+        }
+
+        #logo {
+            width: auto;
+            max-width: 200px;
+            max-height: 80px;
+            margin-right: auto;
+            margin-left: 30px;
+        }
+
+        #button {
+            display: none;
+        }
+
+        #mainNav {
+            width: 100%;
+            display: flex;
+        }
+
+        #burgerMenu {
+            display: block;
+            position: initial;
+            background: none;
+            padding-top: 0;
+            width: 100%;
+            height: 80px;
+            padding-right: 3%;
+            text-align: right;
+            margin-right: 0;
+            margin-left: auto;
+        }
+
+        #burgerMenu li {
+            display: inline-block;
+            margin-left: 1%;
+            height: 100%;
+        }
+
+        #burgerMenu li:first-child {
+            display: none;
+        }
+
+        #burgerMenu .refresh {
+            display: block;
+        }
+
+        #burgerMenu a {
+            display: inline-block;
+            height: 100%;
+            color: $grey;
+            border: none;
+            padding: 5px;
+            font-size: 0.9em;
+            padding-top: 30px;
+        }
+        
+        #burgerMenu a:hover {
+            color: $white;
+            background: none;
+        }
+        
+        #desk .refresh {
+            margin-left: 0;
+            border-right: 2px solid $grey !important;
+            padding-right: 15px !important;
+        }
+    }
+
+    #basicmobile {
+        display: none;
+    }
+
+    #basicdesktop {
+        display: block;
+    }
+
+
+}
+
+@media screen and (min-width: 800px) {
+  #basicdesktop #myHumidityChart {
+    
+      margin-left: 6%;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  #basicdesktop #myHumidityChart {
+      margin-top: 275px;
+      margin-left: 8%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  #basicdesktop #myHumidityChart {
+      margin-left: 10%;
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  #basicdesktop #myHumidityChart {
+      margin-top: 300px;
+  }
+}
