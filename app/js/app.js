@@ -10,7 +10,7 @@
 		loadingAnimation.classList.toggle('fade');
 	}, 100);
 	//1700
-	
+
 	if(navigator.userAgent.indexOf("Firefox") != -1 ) {
 		var params = {
 			container: document.querySelector('#loadingScreen'),
@@ -90,6 +90,229 @@
 		};
 	}
 	
+	
+	// Global options
+	Chart.defaults.global.defaultFontFamily = 'Lato';
+	Chart.defaults.global.defaultFontSize = 20;
+	Chart.defaults.global.defaultFontColor = '#f5f5f5';
+
+	var humidChartBox = document.querySelector('#myHumidityChart').getContext('2d');
+	let humidHistoryBox = document.querySelector('#humidChart').getContext('2d');
+	let sunHistoryBox = document.querySelector('#sunChart').getContext('2d');
+	let tempHistoryBox = document.querySelector('#tempChart').getContext('2d');
+
+var value = 70;
+	let historyH = new Chart(humidHistoryBox, {
+		type:'line',
+		data:{
+			labels:['Monday', 'Tuesday', 'Wednesday','Thursday','Friday', 'Saturday', 'Sunday' ],
+			datasets:[{
+				label: ['Humidity'],
+				data: [30,90,80,50,45,40,56,50],
+				backgroundColor:['#f5f5f5'],//we can use rbg and hex color
+				hoverBorderWidth:3,
+				fill: false,
+				borderColor: '#595980',
+				lineTension:0.1,
+				pointBackgroundColor: "#BEDA71",
+				pointBorderWidth: 1,
+			 	pointHoverRadius: 8,
+				pointRadius: 5
+			}]
+		},
+	 options:{
+		 legend:{
+			 display: false,
+			 position: 'right'
+		 },
+		 layout:{
+			 padding:{
+				 left:0,
+				 right:0,
+				 bottom:0,
+				 top:0
+			 }
+		 },
+		 tooltips:{
+			 enable: false
+		 },
+	 
+		 animation: {
+			 animationScale: true
+		 },
+
+		 scales: {
+			xAxes: [{
+				gridLines: {
+					color: "rgba(189, 189, 189, 0.25)"
+				}
+			}],
+			yAxes: [{
+				gridLines: {
+					color: "rgba(189, 189, 189, 0.25)"
+				}   
+			}]
+		}
+	 
+	 
+	 
+	 }
+	 
+	 });
+
+	 let historyS = new Chart(sunHistoryBox, {
+		type:'line',
+		data:{
+			labels:['Monday', 'Tuesday', 'Wednesday','Thursday','Friday', 'Saturday', 'Sunday' ],
+			datasets:[{
+				label: ['Sunlight'],
+				data: [30,80,50,10,45,40,56,50],
+				backgroundColor:['#f5f5f5'],//we can use rbg and hex color
+				hoverBorderWidth:3,
+				fill: false,
+				borderColor: '#595980',
+				lineTension:0.1,
+				pointBackgroundColor: "#BEDA71",
+				pointBorderWidth: 1,
+			 	pointHoverRadius: 8,
+				pointRadius: 5
+			}]
+		},
+	 options:{
+		 legend:{
+			 display: false,
+			 position: 'right'
+		 },
+		 layout:{
+			 padding:{
+				 left:0,
+				 right:0,
+				 bottom:0,
+				 top:0
+			 }
+		 },
+		 tooltips:{
+			 enable: false
+		 },
+	 
+		 animation: {
+			 animationScale: true
+		 },
+
+		 scales: {
+			xAxes: [{
+				gridLines: {
+					color: "rgba(189, 189, 189, 0.25)"
+				}
+			}],
+			yAxes: [{
+				gridLines: {
+					color: "rgba(189, 189, 189, 0.25)"
+				}   
+			}]
+		}
+	 
+	 
+	 
+	 }
+	 
+	 });
+
+	 let historyT = new Chart(tempHistoryBox, {
+		type:'line',
+		data:{
+			labels:['Monday', 'Tuesday', 'Wednesday','Thursday','Friday', 'Saturday', 'Sunday' ],
+			datasets:[{
+				label: ['Temperature'],
+				data: [30,60,50,60,45,40,56,50],
+				backgroundColor:['#f5f5f5'],//we can use rbg and hex color
+				hoverBorderWidth:3,
+				fill: false,
+				borderColor: '#595980',
+				lineTension:0.1,
+				pointBackgroundColor: "#BEDA71",
+				pointBorderWidth: 1,
+			 	pointHoverRadius: 8,
+				pointRadius: 5
+			}]
+		},
+	 options:{
+		 legend:{
+			 display: false,
+			 position: 'right'
+		 },
+		 layout:{
+			 padding:{
+				 left:0,
+				 right:0,
+				 bottom:0,
+				 top:0
+			 }
+		 },
+		 tooltips:{
+			 enable: false
+		 },
+	 
+		 animation: {
+			 animationScale: true
+		 },
+
+		 scales: {
+			xAxes: [{
+				gridLines: {
+					color: "rgba(189, 189, 189, 0.25)"
+				}
+			}],
+			yAxes: [{
+				gridLines: {
+					color: "rgba(189, 189, 189, 0.25)"
+				}   
+			}]
+		}
+	 
+	 
+	 
+	 }
+	 
+	 });
+
+	var humidChart = new Chart(humidChartBox, {
+		type:'doughnut',
+			data:{
+				labels:['Humidity'],
+				datasets:[{
+					label: 'Humidity',
+					data: [30,70],
+					backgroundColor:['#00e6ff'],
+					hoverBorderWidth:3,
+					hoverBorderColor: '#000',
+					borderWidth:[1,0]
+				}]
+				},
+				options:{
+					legend:{
+						display: false
+					},
+					layout:{
+						padding:{
+							left:0,
+							right:0,
+							bottom:0,
+							top:0
+						}
+					},
+					tooltips:{
+						enable: false
+					},
+
+					animation: {
+						animationScale: false
+					},
+
+					cutoutPercentage:80
+				}
+
+			});
 
 	function swipeNav(e) {
 		e.currentTarget.classList.add("active");

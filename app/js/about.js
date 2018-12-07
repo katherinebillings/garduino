@@ -12,9 +12,9 @@
         button.classList.toggle("closeToggle");
     }
 
-    links.forEach(function(element, index) {
-        element.addEventListener("click", navToggle, false);
-    });
+    for (var i = 0; i < links.length; i++) {
+        links[i].addEventListener("click", navToggle, false);
+    };
     
 
     //removal of circle menu

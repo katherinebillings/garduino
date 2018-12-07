@@ -29,7 +29,7 @@
             <ul id="burgerMenu">
 				<li><a href="#">Home</a></li>
 				<li id="desk"><a class="refresh" href="#">Refresh</a></li>
-                <li><a href="#">About BUDY</a></li>
+                <li><a href="about.html">About BUDY</a></li>
                 <li><a href="#">Settings</a></li>
                 <li><a href="#">Logout</a></li>
             </ul>
@@ -55,25 +55,25 @@
 				<a class="info" href="details.html" id="humidBasic">
 					<div class="clip">
 						<img src="images/humiditylogo.svg" alt="Humidity Icon">
-						<div class="clip"></div>
+						<div class="mask"></div>
 					</div>
-					<h3>60%</h3>
+					<h3>0%</h3>
 					<h4>Humidity Good</h4>
 				</a>
 				<a class="info" href="details.html?temp" id="tempBasic">
 					<div class="clip">
 						<img src="images/templogo.svg" alt="Temperature Icon">
-						<div class="clip"></div>
+						<div class="mask"></div>
 					</div>
-					<h3>20°</h3>
+					<h3>0°</h3>
 					<h4>Temp High</h4>
 				</a>
 				<a class="info" href="details.html?sun" id="sunBasic">
 					<div class="clip">
 						<img src="images/sunlogo.svg" alt="Sunlight Icon">
-						<div class="clip"></div>
+						<div class="mask"></div>
 					</div>
-					<h3>2.00 lm</h3>
+					<h3>0 lm</h3>
 					<h4>Sunlight Low</h4>
 				</a>
 			</div>
@@ -118,35 +118,43 @@
 					<header>
 						<img class="icon" src="images/humiditylogo.svg" alt="Humidity Icon">
 						<h2>Humidity</h2>
-						<h3 class="sensorLabel">Good</h3>
 					</header>
-					<h3 class="sensorData">75%</h3>
-					<!--<div class="containerHumidity" style="position: relative; height:40vh; width:80vw">
-						<h2 id="humidValue">Humidity</h2>
-						<canvas id="myHumidityChart"></canvas>
-					</div>-->
+					<h3 class="sensorLabel">Good</h3>
+					
+					<div class="sensorData">
+						<h3>0%</h3>
+						<div class="containerHumidity">
+							<canvas id="myHumidityChart"></canvas>
+						</div>
+					</div>
 					<h3>Just the right amount of water</h3>
-					<img class="history" src="assets/history.png" alt="History">
+					<div class="containHistory">
+						<canvas id="humidChart" style="margin-top: -500px;"></canvas>
+					</div>
 				</div>
 				<div class="details" id="temp"> 
 					<header>
 						<img class="icon" src="images/templogo.svg" alt="Temperature Icon">
 						<h2>Temperature</h2>
-						<h3 class="sensorLabel">High</h3>
 					</header>
-					<h3 class="sensorData">20°</h3>
+					<h3 class="sensorLabel">High</h3>
+					<h3 class="sensorData">0°</h3>
 					<h3>Reduce temperature quickly</h3>
-					<img class="history" src="assets/history.png" alt="History">
+					<div class="containHistory">
+						<canvas id="tempChart" style="margin-top: -500px;"></canvas>
+					</div>
 				</div>
 				<div class="details" id="sun">
 					<header>
 						<img class="icon" src="images/sunlogo.svg" alt="Sunlight Icon">
 						<h2>Sunlight</h2>
-						<h3 class="sensorLabel">Low</h3>
 					</header>
-					<h3 class="sensorData">2.0<span>lm</span></h3>
+					<h3 class="sensorLabel">Low</h3>
+					<h3 class="sensorData">0<span>lm</span></h3>
 					<h3>Move plant closer to sunlight</h3>
-					<img class="history" src="assets/history.png" alt="History">
+					<div class="containHistory">
+						<canvas id="sunChart" style="margin-top: -500px;"></canvas>
+					</div>
 				</div>
 			</div>
 		</div>

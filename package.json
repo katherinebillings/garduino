@@ -6,10 +6,11 @@
     "start": "electron ."
   },
   "devDependencies": {
+    "devtron": "^1.4.0",
     "electron-rebuild": "^1.8.2"
   },
   "dependencies": {
     "electron-prebuilt": "^0.36.7",
-    "johnny-five": "^0.9.23"
+    "johnny-five": "^0.9.62"
   }
 }

@@ -39,7 +39,7 @@ img, embed, object, video {
 #overlay {
   position: fixed;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   top: 0;
   left: 0;
   right: 0;
@@ -84,6 +84,7 @@ img, embed, object, video {
 #container {
   margin: 0 auto;
   width: 100vw;
+  height: 100vh;
   overflow: hidden; }
 
 header {
@@ -253,12 +254,6 @@ header {
   flex-flow: row nowrap;
   align-items: center; }
 
-#weather {
-  grid-column: 1/4; }
-
-#fav {
-  grid-column: 4/5; }
-
 #fav img {
   margin-left: auto; }
 
@@ -268,7 +263,7 @@ header {
   flex-flow: row nowrap; }
 
 .info {
-  padding: 175px 0 10px 0;
+  padding: 0 0 10px 0;
   position: relative;
   text-decoration: none; }
 
@@ -277,26 +272,37 @@ header {
   display: flex;
   flex-flow: column nowrap; }
 
-#humidBasic .clip {
+.clip {
+  position: relative;
+  top: 0;
+  width: 100%; }
+
+#humidBasic .mask {
   background: url("../images/humidlogo-color.svg") no-repeat;
   position: absolute;
   top: 0;
   width: 100%;
-  clip-path: inset(40% 0 0 0); }
+  height: 100%;
+  background-position: center center;
+  background-attachment: local; }
 
-#tempBasic .clip {
+#tempBasic .mask {
   background: url("../images/templogo-color.svg") no-repeat;
   position: absolute;
   top: 0;
   width: 100%;
-  clip-path: inset(40% 0 0 0); }
+  height: 100%;
+  background-position: center center;
+  background-attachment: local; }
 
-#sunBasic .clip {
+#sunBasic .mask {
   background: url("../images/sunlogo-color.svg") no-repeat;
   position: absolute;
   top: 0;
   width: 100%;
-  clip-path: inset(40% 0 0 0); }
+  height: 100%;
+  background-position: center center;
+  background-attachment: local; }
 
 .info h3 {
   font-size: 1.5em;
@@ -393,6 +399,25 @@ header {
   font-family: "rubikregular", Arial, Helvetica, sans-serif !important;
   text-transform: uppercase; }
 
+#humid .sensorData h3 {
+  margin: 0 auto;
+  font-family: "rubikregular", Arial, Helvetica, sans-serif !important;
+  margin-top: 20px; }
+
+.containerHumidity {
+  width: 100%;
+  height: 300px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0; }
+
+#myHumidityChart {
+  width: 250px !important;
+  height: 123px !important;
+  margin: 0 auto;
+  margin-top: 105px; }
+
 #temp .sensorData {
   border: 15px solid;
   border-color: #B21C05;
@@ -406,15 +431,23 @@ header {
 #sun .sensorData span {
   font-size: 0.5em;
   display: block;
-  margin-top: -5px;
   text-transform: initial; }
 
-.history {
-  display: block;
-  width: 75%;
-  margin: 0 auto; }
+.containHistory {
+  width: 100%;
+  height: 300px;
+  position: absolute;
+  bottom: 150;
+  left: 0;
+  right: 0; }
 
-.details.hideDetailsRight .history, .details.hideDetailsLeft .history {
+.containHistory canvas {
+  width: 85% !important;
+  height: auto !important;
+  margin: 0 auto;
+  margin-top: 5% !important; }
+
+.details.hideDetailsRight .containHistory, .details.hideDetailsLeft .containHistory {
   display: none; }
 
 .plus {
@@ -487,13 +520,12 @@ header {
     overflow: hidden; }
   #basicdesktop .basicInfo h2 {
     display: inline;
-    margin-top: 0;
-    margin-bottom: 0;
     text-align: left;
     font-size: 0.9em;
     font-weight: normal;
     letter-spacing: initial;
-    line-height: 30px; }
+    line-height: 1;
+    margin-top: 7.5px; }
   #basicdesktop #top {
     width: 90%;
     margin: 0 auto;
@@ -506,6 +538,7 @@ header {
   #basicdesktop #bottom {
     display: flex; }
   #basicdesktop #add {
+    display: inline-block;
     margin-left: 3%; }
   #basicdesktop .plus {
     width: 15px;
@@ -531,6 +564,8 @@ header {
     margin-left: auto; }
   #basicdesktop #fav {
     margin-right: 20px; }
+  #basicdesktop .infoBox {
+    justify-content: space-around; }
   #basicdesktop .details {
     position: initial; }
   #basicdesktop .details header {
@@ -538,29 +573,65 @@ header {
     padding: 0 10px;
     flex-flow: row nowrap;
     background: none;
-    margin-bottom: 10px; }
+    margin-bottom: 10px;
+    height: 40px; }
   #basicdesktop .details h2 {
-    margin-top: 0;
+    margin: 10px auto 0 8px;
     font-size: 1em;
     text-align: left;
-    margin-left: 8px; }
+    letter-spacing: 0;
+    line-height: 1; }
   #basicdesktop .sensorLabel {
-    grid-column: 5/9;
     font-size: 1.65em;
-    margin: 0; }
+    margin: 0;
+    margin-bottom: 30px;
+    width: 100%; }
   #basicdesktop .icon {
     position: initial;
-    grid-column: 1/2;
-    margin-left: 0; }
-  #basicdesktop .details h3:not(.sensorData) {
-    margin: 30px 0; }
+    margin-left: 0;
+    display: inline;
+    vertical-align: middle; }
+  #basicdesktop .containerHumidity {
+    width: 100%;
+    position: initial;
+    margin-top: -75px;
+    margin-left: -65px; }
+  #basicdesktop #myHumidityChart {
+    margin-top: 0; }
+  #basicdesktop #humid .sensorData h3 {
+    margin: 0 auto;
+    font-family: "rubikregular", Arial, Helvetica, sans-serif !important;
+    margin-top: 20px; }
+  #basicdesktop .containHistory {
+    width: 33%;
+    height: auto;
+    position: absolute;
+    bottom: 150;
+    left: 50%;
+    margin-left: -16.5%;
+    right: auto;
+    padding: 0 10px; }
+  #basicdesktop #temp .containHistory {
+    left: 50%; }
+  #basicdesktop #humid .containHistory {
+    left: 0;
+    margin: 0; }
+  #basicdesktop #sun .containHistory {
+    right: 0;
+    left: auto;
+    margin: 0; }
+  #basicdesktop .containHistory canvas {
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 auto;
+    margin-top: 5% !important; }
 
 @media screen and (min-width: 600px) {
   body {
     overflow: initial; }
 
   .basic .content {
-    height: initial;
+    height: 100%;
     padding-bottom: 30px; }
   .basic header {
     height: 100px;
